@@ -9,35 +9,64 @@
 </head>
 <body ng-controller="IndexCtrl">
 <div class="container">
-
     <div class="content-container-left">
-
-        <div class="content-row">
-            <form>
-                <div class="form-group">
-                    <label for="exampleInputName1">user id</label>
-                    <input type="text" class="form-control"  ng-model="userid">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleInputEmail1">item id</label>
-                    <input type="text" class="form-control"  ng-model="itemid">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleInputSubject1">num items</label>
-                    <input type="text" class="form-control" ng-model="numitems">
-                </div>
-
-
-                <button type="submit" class="btn btn-default" ng-click="getRecommendations(userid, itemid, numitems)">Submit</button>
-            </form>
+        <div class="row">
+            <div class="col-xs-3">
+                <label for="exampleInputName1">user id</label>
+                <input type="text" class="form-control"  ng-model="userid">
+            </div>
         </div>
-        <div class="content-row">
+        <div class="row">
+            <div class="col-xs-3">
+                <label for="exampleInputEmail1">item id</label>
+                <input type="text" class="form-control" ng-model="itemid" ng-blur="lookupItem(itemid)">
+            </div>
+            <div class="col-xs-4">
+
+            </div>
+            <div class="col-xs-3">
+                <br />
+                <p class="text-success">{{item_description}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+                <label for="exampleInputSubject1">num items</label>
+                <input type="text" class="form-control" ng-model="numitems">
+            </div>
+            <div class="col-xs-4">
+
+            </div>
+            <div class="col-xs-3">
+                <br />
+                <input type="checkbox" ng-model="showJSON"> Show JSON
+            </div>
+        </div>
+
+        <div class="row">
+            <br />
+            <button type="submit" class="btn btn-default" ng-click="getRecommendations(userid, itemid, numitems)">Submit</button>
+
+        </div>
+
+        <div class="row">
+            <table class="table table-bordered table-striped">
+                <tr ng-repeat="result in results">
+                    <td>{{result.item_id}}</td>
+                    <td>{{result.score}}</td>
+                    <td><a href="{{result.imdb}}">{{result.item_description}}</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="content-row" ng-show="showJSON">
+            JSON reponse to recommendation query
             <ul>
                 <li ng-repeat="result in results">
-                    {{result.itemid}}
+                    {{result.item_id}}
                     :{{result.score}}
+                    :{{result.item_description}}
+                    :{{result.imdb}}
                 </li>
             </ul>
         </div>
