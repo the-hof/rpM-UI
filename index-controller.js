@@ -26,33 +26,11 @@ rpmApp.controller('IndexCtrl', function ($scope, $http) {
     api_url += userid + '/';
     api_url += itemid + '/';
     api_url += numitems
-    api_url += '?callback=JSON_CALLBACK';
+    api_url += '/detail?callback=JSON_CALLBACK';
 
     $http.jsonp(api_url).success(function (data) {
-      var api_results = data;
-      $scope.results = [];
-      var recommendationResults = [];
-
-      $scope.results = api_results;
+      $scope.results = data;
       console.log(data);
-      /*
-      for (var key in api_results) {
-        if (api_results.hasOwnProperty(key)) {
-          var recommendationItem = {
-            'itemid': key,
-            'score' : api_results[key],
-            'item_description': ''
-          }
-          recommendationResults.push(recommendationItem);
-        }
-      }
-
-      recommendationResults.sort(function(a, b) {
-        return b.score - a.score;
-      });
-
-      $scope.results = recommendationResults;
-      */
     });
   }
 });
