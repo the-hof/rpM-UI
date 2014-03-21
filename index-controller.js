@@ -8,6 +8,8 @@ rpmApp.controller('IndexCtrl', function ($scope, $http) {
 
   $scope.item_description = '';
 
+  $scope.hasData = false;
+
   $scope.lookupItem = function (itemid) {
     var api_url = 'http://127.0.0.1:5000/getItem?callback=JSON_CALLBACK&item_id=';
 
@@ -28,9 +30,11 @@ rpmApp.controller('IndexCtrl', function ($scope, $http) {
     api_url += numitems
     api_url += '/detail?callback=JSON_CALLBACK';
 
+    $scope.hasData = false;
+
     $http.jsonp(api_url).success(function (data) {
       $scope.results = data;
-      console.log(data);
+      $scope.hasData = true;
     });
   }
 });
