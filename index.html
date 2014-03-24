@@ -39,7 +39,7 @@
             </div>
             <div class="col-xs-3">
                 <br />
-                <input type="checkbox" ng-model="showJSON"> Show JSON
+                <input type="checkbox" ng-model="showJSON"> Show data response
             </div>
         </div>
 
@@ -66,12 +66,12 @@
         </div>
 
         <div class="content-row" ng-show="showJSON">
-            JSON reponse to recommendation query
+            data reponse to recommendation query
             <ul>
                 <li ng-repeat="result in results">
                     {{result.item_id}}
                     :{{result.score}}
-                    :{{result.item_description}}
+                    :{{result.name}}
                     :{{result.imdb}}
                 </li>
             </ul>

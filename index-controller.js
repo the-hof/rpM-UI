@@ -27,7 +27,7 @@ rpmApp.controller('IndexCtrl', function ($scope, $http) {
     if (!userid) userid = 0;
     if (!itemid) itemid = 0;
     if (!numitems) numitems = 10;
-    
+
     var api_url = 'http://127.0.0.1:5000/recommenderitems/'
     api_url += userid + '/';
     api_url += itemid + '/';
